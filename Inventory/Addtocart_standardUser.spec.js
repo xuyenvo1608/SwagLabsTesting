@@ -1,8 +1,8 @@
 //@ts-check
-const { test, expect } = require("@playwright/test")
+const { test, expect } = require("@playwright/test") 
 test("User able to add product to cart", async ({ page }) => {
   await page.goto("https://www.saucedemo.com/")
-  await page.fill("#user-name", "problem_user")
+  await page.fill("#user-name", "standard_user")
   await page.fill('//input[@id="password"]', "secret_sauce") 
   await page.click('//input[@id="login-button"]')
   await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html")
@@ -25,8 +25,8 @@ test("User able to add product to cart", async ({ page }) => {
 }) 
 test("User able to remove product from cart", async ({ page }) => {
   await page.goto("https://www.saucedemo.com/")
-  await page.fill("#user-name", "problem_user")
-  await page.fill('//input[@id="password"]', "secret_sauce") 
+  await page.fill("#user-name", "standard_user")
+  await page.fill('//input[@id="password"]', "secret_sauce")
   await page.click('//input[@id="login-button"]')
   await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html")
   await page.click("//button[@id='add-to-cart-sauce-labs-backpack']")
@@ -42,7 +42,7 @@ test("User able to remove product from cart", async ({ page }) => {
   const finalButtonText = await page.textContent(
     "//button[@id='add-to-cart-sauce-labs-backpack']"
   ) 
-  expect(finalButtonText).not.toEqual(initialButtonText) 
+  expect(finalButtonText).not.toEqual(initialButtonText)
   expect(finalButtonText).toContain("Add to cart")
   //Check if the product is removed from the cart
   await expect(page.locator("//span[@class='shopping_cart_badge']")).toBeHidden()
